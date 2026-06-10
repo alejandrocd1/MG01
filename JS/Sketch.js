@@ -1,5 +1,5 @@
 // js/sketch.js
-import capitulo5Data from '../data/ejercicios.js';
+import capitulo5Data from '../Data/ejercicios.js';
 
 const ejer = capitulo5Data.ejercicioActual;
 let puntos = []; 
