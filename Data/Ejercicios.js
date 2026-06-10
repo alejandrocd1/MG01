@@ -1,4 +1,4 @@
-// data/ejercicios.js
+// Data/ejercicios.js
 
 const capitulo5Data = {
   titulo: "Capítulo 5: Inecuaciones por el Método Gráfico",
