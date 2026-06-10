@@ -1,4 +1,4 @@
-// js/sketch.js
+// JS/sketch.js
 import capitulo5Data from '../Data/ejercicios.js';
 
 const ejer = capitulo5Data.ejercicioActual;
