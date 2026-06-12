@@ -1,1 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fragata.com.ve - Capítulo 5: Inecuaciones</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.6.0/p5.js"></script>
+    
+    <style>
+        body { font-family: 'Helvetica', Arial, sans-serif; margin: 0; background-color: #f9f9f9; color: #333; }
+        .app-container { display: flex; height: 100vh; }
+        
+        /* Panel Analítico */
+        .panel-analitico { width: 40%; padding: 25px; box-sizing: border-box; background: #fff; border-right: 2px solid #eee; display: flex; flex-direction: column; gap: 15px; overflow-y: auto; }
+        .enunciado { font-size: 1.5rem; color: #0066cc; font-weight: bold; background: #e6f0fa; padding: 10px; border-radius: 6px; display: inline-block; margin: 5px 0; }
+        .caja-paso { border: 1px solid #ddd; padding: 15px; border-radius: 8px; background: #fafafa; }
+        .caja-paso label { font-weight: bold; display: block; margin-bottom: 8px; font-size: 0.9rem; color: #555; }
+        
+        /* Inputs Reales para el iPad */
+        .input-analitico { width: 100%; min-height: 40px; border: 2px solid #ccc; border-radius: 6px; background: #fff; margin-bottom: 12px; box-sizing: border-box; padding: 10px; font-size: 1rem; font-family: monospace; }
+        .input-analitico:focus { border-color: #0066cc; outline: none; }
+        
+        /* Sistema de Feedback de Colores Fragata */
+        .feedback-caja { padding: 12px; border-radius: 6px; font-weight: bold; font-size: 0.95rem; display: none; margin-top: 10px; }
+        .fragata-correcto { display: block; background-color: #d4edda; color: #155724; border: 2px solid #28a745; } /* Verde OK */
+        .fragata-errado { display: block; background-color: #f8d7da; color: #721c24; border: 2px solid #856404; } /* Marrón/Rojo Errado */
+        
+        /* Panel Gráfico */
+        .panel-grafico { width: 60%; display: flex; flex-direction: column; align-items: center; justify-content: center; background: #f0f4f8; padding: 20px; box-sizing: border-box; }
+        .barra-herramientas { display: flex; gap: 10px; margin-bottom: 15px; width: 100%; max-width: 600px; justify-content: center; }
+        
+        .btn { padding: 10px 16px; border: none; border-radius: 5px; font-weight: bold; cursor: pointer; transition: background 0.2s; font-size: 0.9rem; }
+        .btn-accion { background-color: #0066cc; color: white; }
+        .btn-accion:hover { background-color: #0052a3; }
+        .btn-validar { background-color: #28a745; color: white; width: 100%; margin-top: 10px; }
+        .btn-validar:hover { background-color: #218838; }
+        .btn-peligro { background-color: #cc3300; color: white; }
+        
+        #canvas-container { border-radius: 8px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.1); background: #fff; }
+    </style>
+</head>
+<body>
 
+    <div class="app-container">
+        
+        <main class="panel-analitico">
+            <div>
+                <h1 style="font-size: 1.2rem; margin: 0; color: #444;">Ecosistema Fragata</h1>
+                <p style="font-size: 0.8rem; color: #777; margin: 2px 0 10px 0;">Democratizando el Método del Dr. Pedro Alson</p>
+                <h2>Desigualdad a resolver:</h2>
+                <div class="enunciated-box">
+                    <span class="enunciado">x &lt; -x + 1</span>
+                </div>
+            </div>
+            
+            <section class="caja-paso">
+                <label>1. Plantee la ecuación asociada para hallar la intersección:</label>
+                <input type="text" class="input-analitico" id="input-ecuacion" placeholder="Ejemplo: x = -x + 1">
+                
+                <label>2. Punto de corte crítico encontrado (Valor de x):</label>
+                <input type="text" class="input-analitico" id="input-corte" placeholder="Ejemplo: 0.5 o 1/2">
+                
+                <label>3. Intervalo de la solución final en el eje X:</label>
+                <input type="text" class="input-analitico" id="input-intervalo" placeholder="Ejemplo: (-inf, 0.5)">
+                
+                <button id="btn-validar-analitica" class="btn btn-validar">📊 Verificar Respuestas Analíticas</button>
+                
+                <div id="feedback-analitico" class="feedback-caja"></div>
+            </section>
+        </main>
+
+        <section class="panel-grafico">
+            <nav class="barra-herramientas">
+                <button id="btn-retroceder" class="btn btn-accion">↩ Retroceder Paso</button>
+                <button id="btn-limpiar" class="btn btn-peligro">🗑 Limpiar Lienzo</button>
+            </nav>
+            <div id="canvas-container"></div>
+        </section>
+
+    </div>
+
+    <script type="module" src="js/sketch.js"></script>
+</body>
+</html>
